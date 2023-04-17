@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from "react-router-dom";
 import logo from '../../../img/logo2.png';
 
-const Navbar = () => {
+const Footer = () => {
     return (
         <div className="header">
             <div className="container">
@@ -14,9 +14,9 @@ const Navbar = () => {
                     </div>
                     <div className="navbar__links">
                         <Link to="/about" className="navbar__links_item">О сайте</Link>
-                        <Link to="/posts" className="navbar__links_item">Найти</Link>
+                        <Link to="/posts" className="navbar__links_item">Посты</Link>
                         <Link to="/write" className="navbar__links_item">Опубликовать</Link>
-                        <Link to="/login" className="navbar__links_item">Профиль</Link>
+                        <Link to="/login" className="navbar__links_item">Войти</Link>
                     </div>
                 </div>
             </div>
@@ -24,4 +24,4 @@ const Navbar = () => {
     );
 };
 
-export default Navbar;
+export default Footer;
