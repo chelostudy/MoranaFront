@@ -24,7 +24,19 @@ import AppRouter from "./components/AppRouter";
 import {AuthContext} from "./auth";
 
 
+
 function App() {
+
+
+    const message = 'hello_world-guys' // Try edit me
+
+
+// Log to console
+    console.log(message.replace(/[-_]([a-z])/g, function (match, letter) {
+        return letter.toUpperCase();
+    }))
+
+
     const [isAuth, setIsAuth] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
 
