@@ -1,4 +1,3 @@
-const mailService = require('./mail-service')
 const models = require('../models/models')
 const UserModel = models.User
 const tokenService = require('./token-service')
@@ -7,7 +6,6 @@ const UserDto = require('../dtos/user-dto')
 class UserService{
     async registration(email, password){
         const candidate = await UserModel.findOne({where:{email: "email"}});
-        console.log(candidate)
         if(candidate) {
             throw new Error(`${email} already in use`)
         }
@@ -19,6 +17,42 @@ class UserService{
 
         return{...tokens, user: userDto}
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     async login(email, password) {
         const user = await UserModel.findOne({email})

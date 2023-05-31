@@ -19,7 +19,6 @@ class TokenService {
             tokenData.refreshToken = refreshToken
             return tokenData.save()
         }
-        console.log("(DSKADJLKSDSJLKADLKASKLD:KLASDJNKAS:MNDKASNDLKAS:")
         const token = await refreshTokenModel.create({user: userId, refreshToken})
         return token;
     }
