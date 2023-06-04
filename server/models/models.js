@@ -1,11 +1,11 @@
 const sequelize = require('../db')
 const {DataTypes} = require('sequelize')
 
-const User = sequelize.define('user',{
+const Admin = sequelize.define('user',{
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     email: {type: DataTypes.STRING, unique: true, required: true},
     password: {type: DataTypes.STRING, required: true},
-    role: {type: DataTypes.STRING(30), defaultValue: "USER", required: true},
+    role: {type: DataTypes.STRING(30), defaultValue: "Admin", required: true},
 })
 
 const RefreshToken = sequelize.define('refreshToken',{
@@ -19,15 +19,23 @@ const Orders = sequelize.define('orders',{
     email: {type: DataTypes.STRING},
     phone: {type: DataTypes.STRING(30)},
     order_text: {type: DataTypes.STRING},
-    order_status: {type: DataTypes.BOOLEAN, defaultValue: "true"},
+    order_status: {type: DataTypes.BOOLEAN, defaultValue: 0},
 })
 
-User.hasMany(RefreshToken)
-RefreshToken.belongsTo(User)
+const Prices = sequelize.define('prices',{
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    name: {type: DataTypes.STRING},
+    cost: {type: DataTypes.STRING}
+})
+
+
+Admin.hasMany(RefreshToken)
+RefreshToken.belongsTo(Admin)
 
 
 module.exports = {
-    User,
+    Admin,
     RefreshToken,
-    Orders
+    Orders,
+    Prices
 }

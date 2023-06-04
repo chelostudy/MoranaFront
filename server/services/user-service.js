@@ -1,15 +1,18 @@
 const models = require('../models/models')
-const UserModel = models.User
+const UserModel = models.Admin
 const tokenService = require('./token-service')
 const UserDto = require('../dtos/user-dto')
+const bcrypt = require('bcrypt');
+const ApiError = require('../exceptions/api-error');
 
 class UserService{
     async registration(email, password){
-        const candidate = await UserModel.findOne({where:{email: "email"}});
+        const candidate = await UserModel.findOne({where:{email: email}});
         if(candidate) {
-            throw new Error(`${email} already in use`)
+            throw ApiError.BadRequest(`${email} already in use`)
         }
-        const user = await UserModel.create({email, password})
+        const hashPassword = await bcrypt.hash(password, 3);
+        const user = await UserModel.create({email, password: hashPassword})
 
         const userDto = new UserDto(user); //id, email
         const tokens = tokenService.generateTokens({...userDto})
@@ -18,44 +21,8 @@ class UserService{
         return{...tokens, user: userDto}
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     async login(email, password) {
-        const user = await UserModel.findOne({email})
+        const user = await UserModel.findOne({where:{email: email}})
         if (!user) {
             throw ApiError.BadRequest('Пользователь с таким email не найден')
         }
@@ -84,7 +51,7 @@ class UserService{
         if (!userData || !tokenFromDb) {
             throw ApiError.UnauthorizedError();
         }
-        const user = await UserModel.findById(userData.id);
+        const user = await UserModel.findByPk(userData.id);
         const userDto = new UserDto(user);
         const tokens = tokenService.generateTokens({...userDto});
 

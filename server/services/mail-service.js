@@ -28,6 +28,7 @@ class MailService{
                 `
             }
         )
+        return true;
     }
 }
 module.exports = new MailService();
