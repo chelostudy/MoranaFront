@@ -23,6 +23,12 @@ class PriceService{
         const result = await priceModel.findAll()
         return result;
     }
+
+    async loadPrices(category){
+        if (!category) throw ApiError.BadRequest('Категория не указана')
+        const result = await priceModel.findAll({where: {id : category}})
+        return result;
+    }
 }
 module.exports = new PriceService();
 

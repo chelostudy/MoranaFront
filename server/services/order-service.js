@@ -42,6 +42,9 @@ class OrderService{
         }
     }
 
+    async updateOrderStatus(order_id, order_status, admin_id){
+
+    }
 
 }
 

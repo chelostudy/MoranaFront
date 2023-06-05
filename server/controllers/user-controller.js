@@ -36,6 +36,7 @@ class UserController{
             }
             const {email, password} = req.body;
             const userData = await userService.registration(email, password);
+            console.log(userData)
             res.cookie('refreshToken', userData.refreshToken,{maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true});
             return res.json(userData);
         } catch (e){
@@ -52,6 +53,7 @@ class UserController{
             next(e);
         }
     }
+
     async registerOrder(req, res, next){
         try{
             const order = req.body;
@@ -61,6 +63,7 @@ class UserController{
             next(e);
         }
     }
+
     async getOrders(req, res, next){
         try{
             const {pagination_limit, pagination_page} = req.body;
@@ -81,9 +84,13 @@ class UserController{
     }
     async updateOrderStatus(req, res, next){
         try{
+            const {refreshToken} = req.cookies;
+            const admin_id = await userService.getUserId(refreshToken);
+
             const {order_id, order_status, pagination_limit, pagination_page} = req.body;
-            await orderService.updateOrderStatus(order_id, order_status)
+            await orderService.updateOrderStatus(order_id, order_status, admin_id)
             return res.json(await orderService.loadOrders(pagination_limit, pagination_page));
+
         }catch (e){
             next(e)
         }
@@ -97,7 +104,24 @@ class UserController{
             next(e)
         }
     }
+    async getPrices(req, res, next){
+        try{
+            return res.json(await priceService.loadPrices());
+        } catch (e){
+            next(e)
+        }
+    }
 
+    async getPricesByCategory(req, res, next){
+        try{
+            const {category} = req.body;
+            console.log(category)
+            if(!category) return next(ApiError.BadRequest('Не указана категория'))
+            return res.json(await priceService.loadPrices(category));
+        } catch (e){
+            next(e)
+        }
+    }
 }
 
 

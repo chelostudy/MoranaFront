@@ -13,13 +13,15 @@ class TokenService {
         }
     }
 
-    async saveToken(userId, refreshToken) {
-        const tokenData = await refreshTokenModel.findOne({where:{userid: userId}})
+    async saveToken(adminId, refreshToken) {
+        const tokenData = await refreshTokenModel.findOne({where:{adminId: adminId}})
+        console.log(tokenData) // null
         if (tokenData) {
             tokenData.refreshToken = refreshToken
             return tokenData.save()
         }
-        const token = await refreshTokenModel.create({user: userId, refreshToken})
+        console.log("admin", adminId)
+        const token = await refreshTokenModel.create({adminId: adminId, refreshToken})
         return token;
     }
 
@@ -47,7 +49,7 @@ class TokenService {
     }
 
     async findToken(refreshToken) {
-        const tokenData = await refreshTokenModel.findOne({refreshToken})
+        const tokenData = await refreshTokenModel.findOne({where: {refreshToken : refreshToken}})
         return tokenData;
     }
 

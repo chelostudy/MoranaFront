@@ -18,7 +18,7 @@ class UserService{
         const tokens = tokenService.generateTokens({...userDto})
         await tokenService.saveToken(userDto.id, tokens.refreshToken)
 
-        return{...tokens, user: userDto}
+        return{...tokens, admin: userDto}
     }
 
     async login(email, password) {
@@ -47,6 +47,7 @@ class UserService{
             throw ApiError.UnauthorizedError();
         }
         const userData = tokenService.validateRefreshToken(refreshToken);
+        console.log(userData)
         const tokenFromDb = await tokenService.findToken(refreshToken);
         if (!userData || !tokenFromDb) {
             throw ApiError.UnauthorizedError();
@@ -59,6 +60,21 @@ class UserService{
         return {...tokens, user: userDto}
     }
 
+    async getUserId(refreshToken) {
+        if (!refreshToken) {
+            throw ApiError.UnauthorizedError();
+        }
+
+        console.log(refreshToken)
+
+        const tokenFromDb = await tokenService.findToken(refreshToken);
+        console.log(tokenFromDb)
+
+        const user = await UserModel.findByPk(tokenFromDb.adminId);
+        console.log(user, tokenFromDb)
+        const userDto = new UserDto(user);
+
+    }
 
 }
 

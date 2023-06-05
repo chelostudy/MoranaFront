@@ -1,7 +1,7 @@
 const sequelize = require('../db')
 const {DataTypes} = require('sequelize')
 
-const Admin = sequelize.define('user',{
+const Admin = sequelize.define('admin',{
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     email: {type: DataTypes.STRING, unique: true, required: true},
     password: {type: DataTypes.STRING, required: true},
@@ -28,7 +28,7 @@ const Prices = sequelize.define('prices',{
     cost: {type: DataTypes.STRING}
 })
 
-const ServiceTypes = sequelize.define('serviceTypes',{
+const ServiceCategories = sequelize.define('serviceTypes',{
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name: {type: DataTypes.STRING}
 })
@@ -37,12 +37,13 @@ const ServiceTypes = sequelize.define('serviceTypes',{
 Admin.hasMany(RefreshToken)
 RefreshToken.belongsTo(Admin)
 
-ServiceTypes.hasMany(Prices);
-Prices.belongsTo(ServiceTypes);
+ServiceCategories.hasMany(Prices);
+Prices.belongsTo(ServiceCategories);
 
 module.exports = {
     Admin,
     RefreshToken,
     Orders,
-    Prices
+    Prices,
+    ServiceCategories
 }
