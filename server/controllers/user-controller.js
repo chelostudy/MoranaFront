@@ -92,7 +92,7 @@ class UserController{
         try {
             const fields = req.body;
             await priceService.updatePrices(fields)
-            return null
+            return res.json(await priceService.loadPrices())
         } catch (e){
             next(e)
         }

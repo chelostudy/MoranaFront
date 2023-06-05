@@ -4,17 +4,39 @@ const priceModel = (require('../models/models')).Prices
 
 class PriceService{
     async updatePrices(fields){
-        console.log("VHOD")
         if (!fields) throw ApiError.BadRequest('Не выбраны поля в запросе')
         try{
             for (const fKey in fields) {
-                console.log(fields[fKey])
-                console.log(fields.)
+
+                const priceField = await priceModel.findOne({where: {name : fields[fKey].fieldName}})
+                if (!priceField) throw ApiError.BadRequest('Поля не существует')
+
+                priceField.set({cost : fields[fKey].fieldValue})
+                await priceField.save()
             }
             return null
         } catch (e){
             return null
         }
     }
+    async loadPrices(){
+        const result = await priceModel.findAll()
+        return result;
+    }
 }
 module.exports = new PriceService();
+
+//[
+    //{
+        //"fieldName": "Бетон марки 200",
+        //"fieldValue": "3100"
+    //},
+    //{
+        //"fieldName": "Бетон марки 300",
+        //"fieldValue": "4100"
+    //},
+    //{
+        //"fieldName": "Бетон марки 400",
+        //"fieldValue": "4600"
+    //}
+//]

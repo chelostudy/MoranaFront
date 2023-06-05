@@ -24,14 +24,21 @@ const Orders = sequelize.define('orders',{
 
 const Prices = sequelize.define('prices',{
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
-    name: {type: DataTypes.STRING},
+    name: {type: DataTypes.STRING, unique: true},
     cost: {type: DataTypes.STRING}
+})
+
+const ServiceTypes = sequelize.define('serviceTypes',{
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    name: {type: DataTypes.STRING}
 })
 
 
 Admin.hasMany(RefreshToken)
 RefreshToken.belongsTo(Admin)
 
+ServiceTypes.hasMany(Prices);
+Prices.belongsTo(ServiceTypes);
 
 module.exports = {
     Admin,
