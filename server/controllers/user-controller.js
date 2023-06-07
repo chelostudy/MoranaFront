@@ -44,6 +44,8 @@ class UserController{
         }
     }
     async logout(req, res, next) {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) return next(ApiError.BadRequest('Ошибка при валидации', errors.array()))
         try {
             const {refreshToken} = req.cookies;
             const token = await userService.logout(refreshToken);
@@ -85,9 +87,11 @@ class UserController{
     async updateOrderStatus(req, res, next){
         try{
             const {refreshToken} = req.cookies;
-            const admin_id = await userService.getUserId(refreshToken);
-
+            const adminDto = await userService.getUserId(refreshToken);
+            const admin_id = adminDto.id
+            console.log(admin_id, "dsadasdasdsa")
             const {order_id, order_status, pagination_limit, pagination_page} = req.body;
+            console.log(order_id, order_status, pagination_limit, pagination_page)
             await orderService.updateOrderStatus(order_id, order_status, admin_id)
             return res.json(await orderService.loadOrders(pagination_limit, pagination_page));
 

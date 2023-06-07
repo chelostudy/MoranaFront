@@ -19,7 +19,7 @@ const Orders = sequelize.define('orders',{
     email: {type: DataTypes.STRING},
     phone: {type: DataTypes.STRING(30)},
     order_text: {type: DataTypes.STRING},
-    order_status: {type: DataTypes.BOOLEAN, defaultValue: 0},
+    order_status: {type: DataTypes.BOOLEAN, defaultValue: false},
 })
 
 const Prices = sequelize.define('prices',{
@@ -33,6 +33,8 @@ const ServiceCategories = sequelize.define('serviceTypes',{
     name: {type: DataTypes.STRING}
 })
 
+Admin.hasMany(Orders);
+Orders.belongsTo(Admin)
 
 Admin.hasMany(RefreshToken)
 RefreshToken.belongsTo(Admin)

@@ -64,18 +64,11 @@ class UserService{
         if (!refreshToken) {
             throw ApiError.UnauthorizedError();
         }
-
-        console.log(refreshToken)
-
         const tokenFromDb = await tokenService.findToken(refreshToken);
-        console.log(tokenFromDb)
-
         const user = await UserModel.findByPk(tokenFromDb.adminId);
-        console.log(user, tokenFromDb)
         const userDto = new UserDto(user);
-
+        return userDto
     }
-
 }
 
 module.exports = new UserService();

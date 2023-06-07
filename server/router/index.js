@@ -8,7 +8,9 @@ const authMiddleware = require('../middlewares/auth-middleware');
 
 
 
-router.post('/login', userController.login);
+router.post('/login', userController.login,
+    body('email').isEmail(),
+    body('password').isLength({min: 3, max: 32}),);
 router.post('/logout', userController.logout);
 router.post('/register_order', userController.registerOrder);
 router.post('/registration',
@@ -17,10 +19,13 @@ router.post('/registration',
     userController.registration
 );
 router.get('/refresh', userController.refresh);
+
 router.post('/orders', authMiddleware, userController.getOrders);
 router.post('/delete_order', authMiddleware, userController.deleteOrder)
 router.post('/update_order_status', authMiddleware, userController.updateOrderStatus)
 router.post('/update_prices', authMiddleware, userController.updateAllPrices)
+router.post('/get_prices_by_cat',authMiddleware,userController.getPricesByCategory)
+router.post('/get_prices',authMiddleware,userController.getPrices)
 
 
 
