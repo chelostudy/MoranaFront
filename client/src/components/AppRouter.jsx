@@ -21,6 +21,8 @@ const AppRouter = () => {
             <Route exact path='/posts/:id' element={<PostIdPage />} />
             <Route path="/error" element={<Error />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/delivery" element={<Login />} />
+            <Route path="/contacts" element={<Login />} />
             <Route path="/*" element={<Navigate to="/about" replace />} />
         </Routes>
     );

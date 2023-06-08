@@ -13,10 +13,11 @@ const Navbar = () => {
                         </Link>
                     </div>
                     <div className="navbar__links">
-                        <Link to="/about" className="navbar__links_item">О сайте</Link>
-                        <Link to="/posts" className="navbar__links_item">Найти</Link>
-                        <Link to="/write" className="navbar__links_item">Опубликовать</Link>
-                        <Link to="/login" className="navbar__links_item">Профиль</Link>
+                        <Link to="/about" className="navbar__links_item">Главная</Link>
+                        <Link to="/delivery" className="navbar__links_item">Доставка</Link>
+                        <Link to="/price" className="navbar__links_item">Прайс-лист</Link>
+                        <Link to="/contacts" className="navbar__links_item">Контакты</Link>
+                        <Link to="/contacts" className="navbar__links_item">+79996992139</Link>
                     </div>
                 </div>
             </div>

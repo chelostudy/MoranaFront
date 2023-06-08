@@ -19,5 +19,18 @@ export default class PostService {
         const response = await axios.get(`https://jsonplaceholder.typicode.com/posts/${id}/comments`);
         return response;
     }
-
+    static async getPrices(){
+        const response = await axios.post('https://httpbin.org/post', {
+            firstName: 'Fred',
+            lastName: 'Flintstone',
+            orders: [1, 2, 3],
+            photo: document.querySelector('#fileInput').files
+        }, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+    }
+    const {data} =
+    }
+)
 }
