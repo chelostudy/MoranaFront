@@ -25,7 +25,7 @@ router.post('/delete_order', authMiddleware, userController.deleteOrder)
 router.post('/update_order_status', authMiddleware, userController.updateOrderStatus)
 router.post('/update_prices', authMiddleware, userController.updateAllPrices)
 router.post('/get_prices_by_cat', userController.getPricesByCategory)
-router.post('/get_prices', userController.getPrices)
+router.get('/get_prices', userController.getPrices)
 
 
 

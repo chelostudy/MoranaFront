@@ -30,7 +30,5 @@ export default class PostService {
                 'Content-Type': 'application/json'
             }
     }
-    const {data} =
-    }
 )
-}
+}}
