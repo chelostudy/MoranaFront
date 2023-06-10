@@ -9,7 +9,8 @@ const sequelize = require('./db')
 const models = require('./models/models')
 const PORT = process.env.PORT || 5000
 const router = require('./router/index')
-
+const https = require("https")
+const fs = require("fs");
 
 const app = express()
 
@@ -21,16 +22,45 @@ app.use(cors({
 }));
 app.use('/api', router);
 
+
+
+
+// Create a NodeJS HTTPS listener on port 4000 that points to the Express app
+// Use a callback function to tell when the server is created.
+
+
+
+
+
+
 const start = async () => {
     try{
         console.log(process.env.DB_PORT + process.env.DB_HOST)
         await sequelize.authenticate()
         console.log(process.env.DB_PORT + process.env.DB_HOST)
         await sequelize.sync()
-        app.listen(PORT, () => console.log(`server started on port ${PORT}`))
+
+        https
+            .createServer(
+                // Provide the private and public key to the server by reading each
+                // file's content with the readFileSync() method.
+                {
+                    key: fs.readFileSync("key.pem"),
+                    cert: fs.readFileSync("cert.pem"),
+                },
+                app
+            )
+            .listen(4000, () => {
+                console.log("server is running at port 4000");
+            });
+
     }catch (e) {
         console.log(e)
     }
 }
+
+
+
+
 
 start();
