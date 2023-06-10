@@ -13,7 +13,7 @@ router.post('/login', userController.login,
     body('password').isLength({min: 3, max: 32}),);
 router.post('/logout', userController.logout);
 router.post('/register_order', userController.registerOrder);
-router.post('/registration',
+router.post('/registration', authMiddleware,
     body('email').isEmail(),
     body('password').isLength({min: 3, max: 32}),
     userController.registration

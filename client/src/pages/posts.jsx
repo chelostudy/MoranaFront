@@ -33,7 +33,7 @@ function Posts() {
     useEffect(() => {
         if(isPostsLoading) return;
         if(observer.current) observer.current.disconnect();
-        var callback = function (entries, observer) {
+        let callback = function (entries, observer) {
             if(entries[0].isIntersecting && page < totalPages){
                 setPage(page+1)
             }

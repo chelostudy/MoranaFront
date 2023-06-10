@@ -1,12 +1,14 @@
 import React, {useContext} from 'react';
 import {Navigate, Route, Routes} from "react-router-dom";
 import About from "../pages/about";
-import Posts from "../pages/posts";
 import Error from "../pages/error";
-import PostIdPage from "../pages/PostIdPage";
 import {AuthContext} from "../auth";
-import Login from "../pages/login";
+import Admin from "../pages/admin";
 import Loader from "./UI/Loader/Loader";
+import Price from "../pages/price";
+import Delivery from "../pages/delivery";
+import Contacts from "../pages/contacts";
+import Privacy from "../pages/privacy";
 
 const AppRouter = () => {
 
@@ -17,15 +19,17 @@ const AppRouter = () => {
     return (
         <Routes>
             <Route path='/about' element={<About />} />
-            <Route exact path='/posts' element={<Posts />} />
-            <Route exact path='/posts/:id' element={<PostIdPage />} />
             <Route path="/error" element={<Error />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/delivery" element={<Login />} />
-            <Route path="/contacts" element={<Login />} />
+            <Route path="/admin" element={<Admin />} />
+            <Route path="/delivery" element={<Delivery/>} />
+            <Route path="/contacts" element={<Contacts/>} />
+            <Route path="/price" element={<Price/>} />
+            <Route path="/privacy" element={<Privacy/>} />
             <Route path="/*" element={<Navigate to="/about" replace />} />
         </Routes>
     );
 };
 
 export default AppRouter;
+
+//<Route exact path='/posts/:id' element={<PostIdPage />} />

@@ -1,65 +1,51 @@
 import './styles/App.css';
-import PostItem from "./components/PostItem";
-import {useEffect, useMemo, useState} from "react";
-import PostList from "./components/PostList";
-import MyButton from "./components/UI/buttons/myButton";
-import MyInput from "./components/UI/input/myInput";
-import MySelect from "./components/UI/select/mySelect";
-import PostForm from "./components/PostForm";
-import PostFilter from "./components/PostFilter";
-import MyModal from "./components/UI/MyModal/MyModal";
-import {usePosts} from "./hooks/usePosts";
-import axios from "axios";
-import PostService from "./API/PostService";
-import Loader from "./components/UI/Loader/Loader";
-import {useFetching} from "./hooks/useFetching";
-import {getPageCount, getPagesArray} from "./utils/pages";
-import Pagination from "./components/UI/Pagination/Pagination";
-import {BrowserRouter, Routes, Route, Navigate, Link} from "react-router-dom";
-import Posts from "./pages/posts";
-import About from "./pages/about";
-import Navbar from "./components/UI/Navbar/Navbar";
-import Error from "./pages/error";
-import AppRouter from "./components/AppRouter";
-import {AuthContext} from "./auth";
+import React, {useContext, useEffect, useState} from 'react';
+import LoginForm from "./components/LoginForm";
+import {Context} from "./index";
+import {observer} from "mobx-react-lite";
+import UserService from "./services/AuthService";
 
+const App = () => {
+    const {store} = useContext(Context);
+    const [users, setUsers] = useState([]);
 
-
-function App() {
-
-
-    const message = 'hello_world-guys' // Try edit me
-
-
-// Log to console
-    console.log(message.replace(/[-_]([a-z])/g, function (match, letter) {
-        return letter.toUpperCase();
-    }))
-
-
-    const [isAuth, setIsAuth] = useState(false);
-    const [isLoading, setIsLoading] = useState(true);
-
-    useEffect(()=>{
-        if (localStorage.getItem('auth')){
-            setIsAuth(true)
+    useEffect(() => {
+        if (localStorage.getItem('token')) {
+            store.checkAuth()
         }
-        setIsLoading(false)
-    },[])
+    }, [])
+
+    async function getUsers() {
+        try {
+            const response = await UserService.fetchUsers();
+            setUsers(response.data);
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    if (store.isLoading) {
+        return <div>Загрузка...</div>
+    }
+
+    if (!store.isAuth) {
+        return (
+            <div>
+                <LoginForm/>
+                <button onClick={getUsers}>Получить пользователей</button>
+            </div>
+        );
+    }
+
     return (
-        <AuthContext.Provider value={{
-            isAuth,
-            setIsAuth,
-            isLoading
-        }}>
-            <BrowserRouter>
-                <Navbar/>
-                <AppRouter/>
-            </BrowserRouter>
-        </AuthContext.Provider>
+        <div>
+            <h1>{store.isAuth ? `Пользователь авторизован ${store.user.email}` : 'АВТОРИЗУЙТЕСЬ'}</h1>
+            <button onClick={() => store.logout()}>Выйти</button>
+            <div>
+                <button onClick={getUsers}>Получить пользователей</button>
+            </div>
+        </div>
+    );
+};
 
-    )
-}
-
-
-export default App;
+export default observer(App);
