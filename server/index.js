@@ -40,19 +40,24 @@ const start = async () => {
         console.log(process.env.DB_PORT + process.env.DB_HOST)
         await sequelize.sync()
 
-        https
-            .createServer(
+        //https
+            //.createServer(
                 // Provide the private and public key to the server by reading each
                 // file's content with the readFileSync() method.
-                {
-                    key: fs.readFileSync("key.pem"),
-                    cert: fs.readFileSync("cert.pem"),
-                },
-                app
-            )
-            .listen(4000, () => {
-                console.log("server is running at port 4000");
-            });
+                //{
+                    //key: fs.readFileSync("key.pem"),
+                    //cert: fs.readFileSync("cert.pem"),
+                //},
+                //app
+            //)
+            //.listen(4000, () => {
+                //console.log("server is running at port 4000");
+            //});
+        //const express = require('express')
+        //const app = express()
+        app.get('/', (req, res) => res.send('Hello World !'))
+        app.listen(3000, () => console.log('Node.js app listening on port 3000.'))
+
 
     }catch (e) {
         console.log(e)
