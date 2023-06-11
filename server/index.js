@@ -50,8 +50,8 @@ const start = async () => {
                 },
                 app
             )
-            .listen(4000, () => {
-                console.log("server is running at port 4000");
+            .listen(80, () => {
+                console.log("server is running at port 80");
             });
 
     }catch (e) {
