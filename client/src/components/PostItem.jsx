@@ -5,24 +5,22 @@ import 'react-router-dom';
 import logo from "../img/logo2.png";
 import dead from '../img/docent.png';
 const PostItem = (props) => {
-    const router = useNavigate();
     return (
-        <div className="post__container" onClick={() => router(`/posts/${props.post.id}`)}>
-            <div className="user__pic__container">
-                <img src={dead} alt="dead" className="user__pic"/>
-            </div>
-            <div className="post__content">
-                <strong>{props.post.title}</strong><br/>
-                <strong>Имя</strong><br/>
-                <strong>Отчество</strong><br/>
-                <div>
-                    {props.post.body}
-                </div>
-                <div >
-                    <h5 className="post__location">Somewhere</h5>
-                </div>
-            </div>
-        </div>
+                    <tr className="order__table__row">
+                        <td className="order__table__cell">{props.record[1].name}</td>
+                        <td className="order__table__cell">{props.record[1].email}</td>
+                        <td className="order__table__cell">{props.record[1].phone}</td>
+                        <td className="order__table__cell"><input type="checkbox"
+                                                                  name="languages"
+                                                                  value="HTML"
+                                                                  checked={props.record[1].order_status}
+                                                                  onChange={() => props.update(props.record[1].id)}/></td>
+                        <td className="order__table__cell">{props.record[1].adminId}</td>
+                        <td className="order__table__cell">{props.record[1].order_text}</td>
+                        <td className="order__table__cell">
+                            <button onClick={() => props.remove(props.record[1].id)}>Удалить</button>
+                        </td>
+                    </tr>
     );
 };
 

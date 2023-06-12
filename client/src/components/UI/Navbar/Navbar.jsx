@@ -1,8 +1,9 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 import logo from '../../../img/logo2.png';
+import {observer} from "mobx-react-lite";
 
-const Navbar = () => {
+const Navbar = observer(() => {
     return (
         <div className="header">
             <div className="container">
@@ -23,6 +24,6 @@ const Navbar = () => {
             </div>
         </div>
     );
-};
+});
 
 export default Navbar;

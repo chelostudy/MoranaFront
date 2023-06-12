@@ -7,7 +7,7 @@ import MyButton from "../components/UI/buttons/myButton";
 import MyModal from "../components/UI/MyModal/MyModal";
 import PostFilter from "../components/PostFilter";
 import PostForm from "../components/PostForm";
-import PostList from "../components/PostList";
+import PostList from "../components/MyList";
 import Loader from "../components/UI/Loader/Loader";
 import Pagination from "../components/UI/Pagination/Pagination";
 

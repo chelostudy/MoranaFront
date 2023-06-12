@@ -3,10 +3,9 @@ import {Context} from "../index";
 import {observer} from "mobx-react-lite";
 import UserService from "../services/AuthService";
 
-const LoginForm = observer(() => {
+const RegisterForm = ({action, setVisible}) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const {store} = useContext(Context);
 
     return (
         <div>
@@ -22,11 +21,14 @@ const LoginForm = observer(() => {
                 type="password"
                 placeholder='Пароль'
             />
-            <button onClick={() => store.login(email, password)}>
-                Логин
+            <button onClick={() => {
+                action(email, password)
+                setVisible(false)
+            }}>
+                Добавить
             </button>
         </div>
     );
-});
+};
 
-export default LoginForm;
+export default RegisterForm;

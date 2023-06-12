@@ -9,13 +9,14 @@ import Price from "../pages/price";
 import Delivery from "../pages/delivery";
 import Contacts from "../pages/contacts";
 import Privacy from "../pages/privacy";
+import {observer} from "mobx-react-lite";
 
-const AppRouter = () => {
+const AppRouter = observer(() => {
 
-    const {isAuth, isLoading} = useContext(AuthContext);
-    if (isLoading){
-        return <Loader/>
-    }
+    //const {isAuth, isLoading} = useContext(AuthContext);
+    //if (isLoading){
+        //return <Loader/>
+    //}
     return (
         <Routes>
             <Route path='/about' element={<About />} />
@@ -28,7 +29,7 @@ const AppRouter = () => {
             <Route path="/*" element={<Navigate to="/about" replace />} />
         </Routes>
     );
-};
+});
 
 export default AppRouter;
 
