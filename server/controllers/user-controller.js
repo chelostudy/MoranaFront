@@ -1,7 +1,6 @@
 const userService = require('../services/user-service')
 const orderService = require('../services/order-service')
 const priceService = require('../services/price-service')
-const {DataTypes} = require("sequelize");
 const {validationResult} = require('express-validator');
 
 const ApiError = require('../exceptions/api-error');
@@ -18,6 +17,7 @@ class UserController{
             next(e);
         }
     }
+
     async refresh(req, res, next) {
         try {
             const {refreshToken} = req.cookies;
@@ -28,6 +28,7 @@ class UserController{
             next(e);
         }
     }
+
     async registration(req, res, next) {
         try{
             const errors = validationResult(req);
@@ -42,6 +43,7 @@ class UserController{
             next(e);
         }
     }
+
     async logout(req, res, next) {
         const errors = validationResult(req);
         if (!errors.isEmpty()) return next(ApiError.BadRequest('Ошибка при валидации', errors.array()))
@@ -82,6 +84,7 @@ class UserController{
             next(e)
         }
     }
+
     async updateOrderStatus(req, res, next){
         try{
             const {refreshToken} = req.cookies;
@@ -90,11 +93,11 @@ class UserController{
             const {order_id, order_status, pagination_limit, pagination_page} = req.body;
             await orderService.updateOrderStatus(order_id, order_status, admin_id)
             return res.json(await orderService.loadOrders(pagination_limit, pagination_page));
-
-        }catch (e){
+        } catch (e){
             next(e)
         }
     }
+
     async updateAllPrices(req,res,next){
         try {
             const fields = req.body;
@@ -104,6 +107,7 @@ class UserController{
             next(e)
         }
     }
+
     async getPrices(req, res, next){
         try{
             return res.json(await priceService.loadPrices());
@@ -122,6 +126,5 @@ class UserController{
         }
     }
 }
-
 
 module.exports = new UserController();

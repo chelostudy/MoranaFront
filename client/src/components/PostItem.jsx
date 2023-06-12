@@ -15,11 +15,13 @@ const PostItem = (props) => {
                                                                   value="HTML"
                                                                   checked={props.record[1].order_status}
                                                                   onChange={() => props.update(props.record[1].id)}/></td>
-                        <td className="order__table__cell">{props.record[1].adminId}</td>
                         <td className="order__table__cell">{props.record[1].order_text}</td>
+                        <td className="order__table__cell">{props.record[1].adminId}</td>
                         <td className="order__table__cell">
-                            <button onClick={() => props.remove(props.record[1].id)}>Удалить</button>
+                            <button style={{background: "rgba(154,2,2,0.47)", height: "100%"}} onClick={() => props.remove(props.record[1].id)}>Удалить</button>
                         </td>
+                        <td className="order__table__cell">{(props.record[1].createdAt.replace('.000Z', '').replace('T',' '))}</td>
+                        <td className="order__table__cell">{(props.record[1].updatedAt.replace('.000Z', '').replace('T',' '))}</td>
                     </tr>
     );
 };

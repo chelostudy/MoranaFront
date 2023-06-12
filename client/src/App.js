@@ -11,6 +11,8 @@ import Error from "./pages/error";
 import AppRouter from "./components/AppRouter";
 import {observer} from "mobx-react-lite";
 import cl from "./styles/App.css"
+import Footer from "./components/UI/Footer/Footer";
+import footer from "./components/UI/Footer/Footer";
 
 const App = observer(() => {
 
@@ -18,6 +20,7 @@ const App = observer(() => {
         <BrowserRouter>
             <Navbar/>
             <AppRouter />
+            <Footer/>
         </BrowserRouter>
     );
 });

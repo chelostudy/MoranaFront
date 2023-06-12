@@ -1,13 +1,10 @@
 require('dotenv').config()
 
-
-
 const express = require('express')
 const cors = require('cors')
 const cookieParser = require('cookie-parser')
 const sequelize = require('./db')
-const models = require('./models/models')
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 3000
 const router = require('./router/index')
 const https = require("https")
 const fs = require("fs");
@@ -21,17 +18,6 @@ app.use(cors({
     origin: process.env.CLIENT_URL
 }));
 app.use('/api', router);
-
-
-
-
-// Create a NodeJS HTTPS listener on port 4000 that points to the Express app
-// Use a callback function to tell when the server is created.
-
-
-
-
-
 
 const start = async () => {
     try{
@@ -54,20 +40,9 @@ const start = async () => {
                 console.log("server is running at port 3000");
             });
 
-
-        //const express = require('express')
-        //const app = express()
-        //app.get('/', (req, res) => res.send('Hello World !'))
-        //app.listen(3000, () => console.log('Node.js app listening on port 3000.'))
-
-
     }catch (e) {
         console.log(e)
     }
 }
-
-
-
-
 
 start();

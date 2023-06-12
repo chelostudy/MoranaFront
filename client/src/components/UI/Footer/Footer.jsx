@@ -1,10 +1,11 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 import logo from '../../../img/logo2.png';
+import cl from './footer.module.css'
 
 const Footer = () => {
     return (
-        <div className="header">
+        <footer className={cl.footer}>
             <div className="container">
                 <div className="navbar">
                     <div className="logo">
@@ -20,7 +21,7 @@ const Footer = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </footer>
     );
 };
 

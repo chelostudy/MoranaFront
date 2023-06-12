@@ -82,7 +82,7 @@ const Admin = observer(() => {
             <div>
                 <h2>Вы попали на страницу рабочего места администратора сайта beton-rnd-pro.</h2>
                 <h4>Если вы не являетесь администратором, то, пожалуйста, <strong>покиньте данную страницу</strong></h4>
-                <LoginForm action_text={"Войти"}/>
+                <LoginForm/>
             </div>
         );
     }
@@ -99,10 +99,11 @@ const Admin = observer(() => {
 
                 <button onClick={() => store.logout()}>Выйти</button>
                 <button onClick={() => setModalVisible(true)}>Добавить нового администратора</button>
-
-
+                <div style={{display: "flex", justifyContent: "space-around"}}>
+                    <div ><h2 style={{verticalAlign:"center"}}>Список заказов:</h2></div>
+                    <div><button style={{background : "9A0202",}} onClick={() => getOrders()}>Обновить список заказов</button></div>
+                </div>
                 <MyList remove={deleteOrder} update={updateOrder} records={orders}/>
-                <button onClick={() => getOrders()}>Обновить список заказов</button>
 
 
             </div>

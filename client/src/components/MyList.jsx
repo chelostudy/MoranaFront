@@ -16,15 +16,16 @@ const MyList = ({records, remove, update}) => {
             <TransitionGroup className="post__list">
                 <table className="order__table">
                     <thead>
-                        <tr>
+                        <tr className="order__table__row">
                             <td>Имя</td>
-                            <td>Номер</td>
-                            <td>Почта</td>
+                            <td>Email</td>
+                            <td>Телефон</td>
                             <td>Статус</td>
                             <td>Текст</td>
+                            <td>Выполн.</td>
                             <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>Дата поступления</td>
+                            <td>Дата выполнения</td>
                         </tr>
                     </thead>
                 {records.map(record => (
