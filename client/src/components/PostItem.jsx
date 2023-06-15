@@ -5,6 +5,11 @@ import 'react-router-dom';
 import logo from "../img/logo2.png";
 import dead from '../img/docent.png';
 const PostItem = (props) => {
+    if (props.record[1].updatedAt === props.record[1].createdAt){
+        props.record[1].updatedAt = " "
+    }
+
+
     return (
                     <tr className="order__table__row">
                         <td className="order__table__cell">{props.record[1].name}</td>

@@ -3,7 +3,7 @@ import cl from './privacy.module.css';
 
 const Privacy = () => {
     return (
-        <div className={ cl.ttext }>
+        <div className={ cl.privacyPage }>
                 <h2>Политика в отношении обработки персональных данных</h2>
                 <ol type="I" className={cl.outerLi}>
                     <li><h3>Общие положения.</h3>

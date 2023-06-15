@@ -2,6 +2,7 @@ import {makeAutoObservable} from "mobx";
 import AuthService from "../services/AuthService";
 import axios from 'axios';
 import {API_URL} from "../API/index";
+import myModal from "../components/UI/MyModal/MyModal";
 
 export default class Store {
     user = {};
@@ -27,13 +28,13 @@ export default class Store {
     async login(email, password) {
         try {
             const response = await AuthService.login(email, password);
-            console.log(response)
             localStorage.setItem('token', response.data.accessToken);
-            console.log(response.data.accessToken, "EBAT?")
             this.setAuth(true);
             this.setUser(response.data.user);
+            return true
         } catch (e) {
             console.log(e.response?.data?.message);
+            return false
         }
     }
 

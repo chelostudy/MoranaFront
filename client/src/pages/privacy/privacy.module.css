@@ -1,0 +1,22 @@
+
+.privacyPage {
+    max-width: 1140px;
+    padding: 30px;
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'Arial', Arial, sans-serif;
+    font-weight: 300;
+    color: #000;
+
+}
+.outerLi{
+    font-size: 120%;
+    margin: 10px;
+    padding: 10px;
+    line-height: 130%;
+}
+.innerLi{
+    font-size: 100%;
+    margin: 20px;
+}

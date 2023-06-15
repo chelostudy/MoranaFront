@@ -1,5 +1,4 @@
 import React, {useContext, useEffect, useState} from 'react';
-import cl from "./login.module.css";
 import MyInput from "../components/UI/input/myInput";
 import MyButton from "../components/UI/buttons/myButton";
 import {AuthContext} from "../auth";
@@ -12,6 +11,7 @@ import OrderService from "../services/OrderService";
 import MyList from "../components/MyList";
 import MyModal from "../components/UI/MyModal/MyModal";
 import RegisterForm from "../components/RegisterForm";
+import cl from "./admin.module.css"
 
 const Admin = observer(() => {
     //const {isAuth, setIsAuth} = useContext(AuthContext);
@@ -74,14 +74,12 @@ const Admin = observer(() => {
     }
 
     if (store.isLoading) {
-        return <div>Загрузка...</div>
+        return <div  className={cl.aContainer}>Загрузка...</div>
     }
 
     if (!store.isAuth) {
         return (
-            <div>
-                <h2>Вы попали на страницу рабочего места администратора сайта beton-rnd-pro.</h2>
-                <h4>Если вы не являетесь администратором, то, пожалуйста, <strong>покиньте данную страницу</strong></h4>
+            <div className={cl.aContainer}>
                 <LoginForm/>
             </div>
         );
@@ -90,17 +88,18 @@ const Admin = observer(() => {
 
     if (store.isAuth) {
         return (
-            <div>
+            <div  className={cl.aContainer}>
 
                 <MyModal visible={modalVisible} setVisible={setModalVisible}>
                     <RegisterForm setVisible={setModalVisible} action={store.registration}/>
                 </MyModal>
 
 
-                <button onClick={() => store.logout()}>Выйти</button>
+                <button  onClick={() => store.logout()}>Выйти</button>
                 <button onClick={() => setModalVisible(true)}>Добавить нового администратора</button>
                 <div style={{display: "flex", justifyContent: "space-around"}}>
-                    <div ><h2 style={{verticalAlign:"center"}}>Список заказов:</h2></div>
+                    <div></div>
+                    <div><h2 style={{marginTop: "auto", marginBottom:"auto"}}>Список заказов:</h2></div>
                     <div><button style={{background : "9A0202",}} onClick={() => getOrders()}>Обновить список заказов</button></div>
                 </div>
                 <MyList remove={deleteOrder} update={updateOrder} records={orders}/>
@@ -112,19 +111,3 @@ const Admin = observer(() => {
 });
 
 export default Admin;
-
-
-
-
-//<h1>Вход в админ-панель</h1>
-//<MyInput
-    //type="text"
-    //placeholder="Введите логин"
-    //value={email}
-    //onChange={e => setEmail(e.target.value)}/>
-//<MyInput
-    //type="password"
-    //placeholder="Введите пароль"/>
-//value={password}
-//onChange={e => setPassword(e.target.value)}/>
-//<MyButton onClick={login}>Войти</MyButton>

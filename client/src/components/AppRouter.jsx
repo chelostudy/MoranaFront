@@ -8,7 +8,7 @@ import Loader from "./UI/Loader/Loader";
 import Price from "../pages/price";
 import Delivery from "../pages/delivery";
 import Contacts from "../pages/contacts";
-import Privacy from "../pages/privacy";
+import Privacy from "../pages/privacy/privacy";
 import {observer} from "mobx-react-lite";
 
 const AppRouter = observer(() => {

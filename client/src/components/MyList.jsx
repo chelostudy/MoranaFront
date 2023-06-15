@@ -32,7 +32,7 @@ const MyList = ({records, remove, update}) => {
                     <CSSTransition
                         key={record.id}
                         timeout={100}
-                        classNames="post"
+                        classNames="order_unit"
                     >
                         <tbody>
                         <PostItem remove={remove} update={update} number={record.id + 1} record = {record} />

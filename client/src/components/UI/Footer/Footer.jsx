@@ -6,20 +6,22 @@ import cl from './footer.module.css'
 const Footer = () => {
     return (
         <footer className={cl.footer}>
-            <div className="container">
-                <div className="navbar">
-                    <div className="logo">
-                        <Link to="/about" className="logo-link">
-                            <img src={logo} alt="Logo" className="logo-img"/>
-                        </Link>
-                    </div>
-                    <div className="navbar__links">
-                        <Link to="/about" className="navbar__links_item">О сайте</Link>
-                        <Link to="/posts" className="navbar__links_item">Посты</Link>
-                        <Link to="/write" className="navbar__links_item">Опубликовать</Link>
-                        <Link to="/login" className="navbar__links_item">Войти</Link>
-                    </div>
-                </div>
+            <div className={cl.fContainer}>
+                <ul className={cl.fList}>
+                    <li className={cl.fInner}><h2 className={cl.fName}>©ИП Зозуля Н.П</h2></li>
+                    <li></li>
+                    <li className={cl.fInner}><div><Link to="/privacy" className={cl.fNavLink} style={{minHeight: "50px"}}>Политика конфиденциальности</Link></div></li>
+                    <li className={cl.fInner}>
+                        <div>
+                            <ul className={cl.fContactList}>
+                                <li className={cl.fContact}><strong>Телефон:</strong> +79282281430</li>
+                                <li className={cl.fContact}><strong>Почта:</strong> alerts@beton-rnd-pro</li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+
+
             </div>
         </footer>
     );
