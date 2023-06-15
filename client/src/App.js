@@ -13,6 +13,7 @@ import {observer} from "mobx-react-lite";
 import cl from "./styles/App.css"
 import Footer from "./components/UI/Footer/Footer";
 import footer from "./components/UI/Footer/Footer";
+import "@fontsource/inter";
 
 const App = observer(() => {
 

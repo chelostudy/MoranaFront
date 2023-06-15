@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import MyButton from "./UI/buttons/myButton";
 import {Link, useNavigate} from 'react-router-dom';
 import 'react-router-dom';
@@ -9,24 +9,35 @@ const PostItem = (props) => {
         props.record[1].updatedAt = " "
     }
 
-
+    if (props.less){
+        return (<tr className="table__row">
+            <td>{props.record[1].name}</td>
+            <td>{props.record[1].phone}</td>
+            <td><input type="checkbox"
+                       name="languages"
+                       value="HTML"
+                       checked={props.record[1].order_status}
+                       onChange={() => props.update(props.record[1].id)}/></td>
+            <td>{(props.record[1].createdAt.replace('.000Z', '').replace('T',' '))}</td>
+        </tr>)
+    }
     return (
-                    <tr className="order__table__row">
-                        <td className="order__table__cell">{props.record[1].name}</td>
-                        <td className="order__table__cell">{props.record[1].email}</td>
-                        <td className="order__table__cell">{props.record[1].phone}</td>
-                        <td className="order__table__cell"><input type="checkbox"
+                    <tr className="table__row">
+                        <td>{props.record[1].name}</td>
+                        <td>{props.record[1].email}</td>
+                        <td>{props.record[1].phone}</td>
+                        <td><input type="checkbox"
                                                                   name="languages"
                                                                   value="HTML"
                                                                   checked={props.record[1].order_status}
                                                                   onChange={() => props.update(props.record[1].id)}/></td>
-                        <td className="order__table__cell">{props.record[1].order_text}</td>
-                        <td className="order__table__cell">{props.record[1].adminId}</td>
-                        <td className="order__table__cell">
+                        <td>{props.record[1].order_text}</td>
+                        <td>{props.record[1].adminId}</td>
+                        <td>
                             <button style={{background: "rgba(154,2,2,0.47)", height: "100%"}} onClick={() => props.remove(props.record[1].id)}>Удалить</button>
                         </td>
-                        <td className="order__table__cell">{(props.record[1].createdAt.replace('.000Z', '').replace('T',' '))}</td>
-                        <td className="order__table__cell">{(props.record[1].updatedAt.replace('.000Z', '').replace('T',' '))}</td>
+                        <td>{(props.record[1].createdAt.replace('.000Z', '').replace('T',' '))}</td>
+                        <td>{(props.record[1].updatedAt.replace('.000Z', '').replace('T',' '))}</td>
                     </tr>
     );
 };

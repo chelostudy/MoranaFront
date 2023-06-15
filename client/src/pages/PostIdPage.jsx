@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {useParams} from "react-router-dom";
 import {useFetching} from "../hooks/useFetching";
-import PostService from "../API/PostService";
+import IndexForOrders from "../API/indexForOrders";
 import Loader from "../components/UI/Loader/Loader";
 
 const PostIdPage = () => {
@@ -9,11 +9,11 @@ const PostIdPage = () => {
     const [post, setPost] = useState({})
     const [comments, setComments] = useState([])
     const [fetchPostById, isLoading, error] = useFetching( async (id) => {
-        const response = await PostService.getById(id)
+        const response = await IndexForOrders.getById(id)
         setPost(response.data)
     });
     const [fetchComments, isComLoading, comLoadError] = useFetching( async (id) => {
-        const response = await PostService.getCommentsByPostId(id);
+        const response = await IndexForOrders.getCommentsByPostId(id);
         setComments(response.data)
     });
     useEffect(()=>{

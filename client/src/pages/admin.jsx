@@ -2,7 +2,7 @@ import React, {useContext, useEffect, useState} from 'react';
 import MyInput from "../components/UI/input/myInput";
 import MyButton from "../components/UI/buttons/myButton";
 import {AuthContext} from "../auth";
-import PostService from "../API/PostService";
+import IndexForOrders from "../API/indexForOrders";
 import LoginForm from "../components/LoginForm";
 import {Context} from "../index";
 import UserService from "../services/AuthService";
@@ -95,7 +95,7 @@ const Admin = observer(() => {
                 </MyModal>
 
 
-                <button  onClick={() => store.logout()}>Выйти</button>
+                <button onClick={() => store.logout()}>Выйти</button>
                 <button onClick={() => setModalVisible(true)}>Добавить нового администратора</button>
                 <div style={{display: "flex", justifyContent: "space-around"}}>
                     <div></div>
@@ -103,8 +103,6 @@ const Admin = observer(() => {
                     <div><button style={{background : "9A0202",}} onClick={() => getOrders()}>Обновить список заказов</button></div>
                 </div>
                 <MyList remove={deleteOrder} update={updateOrder} records={orders}/>
-
-
             </div>
         );
     }

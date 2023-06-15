@@ -1,7 +1,7 @@
 import {useEffect, useMemo, useRef, useState} from "react";
 import {usePosts} from "../hooks/usePosts";
 import {useFetching} from "../hooks/useFetching";
-import PostService from "../API/PostService";
+import IndexForOrders from "../API/indexForOrders";
 import {getPageCount} from "../utils/pages";
 import MyButton from "../components/UI/buttons/myButton";
 import MyModal from "../components/UI/MyModal/MyModal";
@@ -24,7 +24,7 @@ function Posts() {
     const observer = useRef();
 
     const [fetchPosts, isPostsLoading, postError] = useFetching(async (limit, page) => {
-        const response = await PostService.getAll(limit, page);
+        const response = await IndexForOrders.getAll(limit, page);
         setPosts([...posts, ...response.data]);
         console.log(response.data);
         const totalCount = response.headers['x-total-count']

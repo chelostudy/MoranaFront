@@ -6,6 +6,7 @@ import { FaBars, FaTimes } from "react-icons/fa";
 import { IconContext } from "react-icons/lib";
 import { NavLink } from "react-router-dom";
 import logo from "../../../img/mainLogo.png"
+import {ImPhone} from "react-icons/im"
 
 function Navbar() {
     const [click, setClick] = useState(false);
@@ -80,7 +81,7 @@ function Navbar() {
                                     onClick={closeMobileMenu}
                                     style={{fontWeight: "normal", paddingRight:"0"}}
                                 >
-                                    +7 (928) 229-14-30
+                                    +7 (928) 229-14-30 <ImPhone style={{paddingLeft:"4px"}} color="black"/>
                                 </NavLink>
                             </li>
                         </ul>
