@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {action} from "mobx";
+import cl from './orderForm.module.css'
 
 const OrderForm = (props) => {
     const[name, setName]=useState('');
@@ -7,48 +8,48 @@ const OrderForm = (props) => {
     const[phone, setPhone]=useState('');
     const[text, setText]=useState('');
     return (
-        <div>
+        <div className={cl.oForm}>
 
 
-            <label htmlFor="nam"><b>Ваше имя</b></label>
+            <div><label htmlFor="nmb"><b>Номер телефона*</b></label>
+                <input
+                    onChange={e => setPhone(e.target.value)}
+                    value={phone}
+                    type="text"
+                    placeholder='Ваше имя'
+                    name="nmb"
+                /></div>
+
+            <div><label htmlFor="nam"><b>Ваше имя</b></label>
             <input
                 onChange={e => setName(e.target.value)}
                 value={name}
                 type="text"
                 placeholder='Ваш номер телефона'
                 name="nam"
-            />
+            /></div>
 
-            <label htmlFor="nmb"><b>Номер телефона</b></label>
-            <input
-                onChange={e => setPhone(e.target.value)}
-                value={phone}
-                type="text"
-                placeholder='Ваше имя'
-                name="nmb"
-            />
-
-            <label htmlFor="ema"><b>Почтовый ящик</b></label>
+            <div><label htmlFor="ema"><b>Почтовый ящик</b></label>
             <input
                 onChange={e => setEmail(e.target.value)}
                 value={email}
                 type="text"
                 placeholder='Почтовый ящик'
                 name="ema"
-            />
+            /></div>
 
-            <label htmlFor="text"><b>Текст</b></label>
+            <div><label htmlFor="text"><b>Текст</b></label>
             <input
                 onChange={e => setText(e.target.value)}
                 value={text}
                 type="text"
                 placeholder='Текст...'
                 name="text"
-            />
+            /></div>
 
             <button onClick={async () => {
-                if (email == "" || phone == ""){const response = await props.action(text, phone, name, email)
-                    props.setVisible(false)
+                if (!email == "" || !phone == ""){const response = await props.action(text, phone, name, email)
+                    try{props.setVisible(false)}catch (e){}
                     console.log(response, "HER")
                     if (!response){
 
