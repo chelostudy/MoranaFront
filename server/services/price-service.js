@@ -20,14 +20,14 @@ class PriceService{
             return null
         }
     }
-    async loadPrices(){
+    async loadPrice(){
         const result = await priceModel.findAll()
         return result;
     }
 
     async loadPrices(category){
         if (!category) throw ApiError.BadRequest('Категория не указана')
-        const result = await priceModel.findAll({where: {id : category}})
+        const result = await priceModel.findAll({where: {serviceTypeId : category}})
         return result;
     }
 }

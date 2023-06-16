@@ -73,8 +73,6 @@ const About = () => {
                 </div>
             </div>
 
-            <BlockM/>
-
         </div>
     );
 };

@@ -110,7 +110,7 @@ class UserController{
 
     async getPrices(req, res, next){
         try{
-            return res.json(await priceService.loadPrices());
+            return res.json(await priceService.loadPrice());
         } catch (e){
             next(e)
         }
