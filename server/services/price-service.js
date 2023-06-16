@@ -48,38 +48,7 @@ class PriceService{
             name: "бетононасос"
         })
     }
-    async fff(){
-        await priceModel.create({
-            name: "Бетон марки 100",
-            cost: "3600",
-            serviceTypeId: 0
-        })
-        await priceModel.create({
-            name: "Бетон марки 150",
-            cost: "3750",
-            serviceTypeId: 0
-        })
-        await priceModel.create({
-            name: "Бетон марки 200",
-            cost: "3900",
-            serviceTypeId: 0
-        })
-        await priceModel.create({
-            name: "Бетон марки 250",
-            cost: "4100",
-            serviceTypeId: 0
-        })
-        await priceModel.create({
-            name: "Бетон марки 300",
-            cost: "4400",
-            serviceTypeId: 0
-        })
-        await priceModel.create({
-            name: "Бетон марки 400",
-            cost: "4800",
-            serviceTypeId: 0
-        })
-    }
+
 }
 
 
