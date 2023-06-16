@@ -1,15 +1,32 @@
 .oForm{
     display: flex;
-    flex-direction: column
+    flex-direction: column;
+    max-width: 500px;
 }
 
-.oForm input[type=text], input[type=password] {
+.oForm textarea, input[type=text], input[type=password] {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
     border: 1px solid #ccc;
     box-sizing: border-box;
+}
+.oForm textarea{
+    resize: none;
+    min-height: 100px;
+}
+.oForm input[type=checkbox]{
+    transform:scale(1.7);
+    opacity:0.9;
+    cursor:pointer;
+    margin-right: 5px;
+}
+
+.oBtnDiv{
+    display: flex;
+    flex-direction: row;
+    column-gap: 20px;
 }
 
 .oForm button {
