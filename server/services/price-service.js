@@ -1,6 +1,7 @@
 const ApiError = require("../exceptions/api-error");
 
 const priceModel = (require('../models/models')).Prices
+const catModel = (require('../models/models')).ServiceCategories
 
 class PriceService{
     async updatePrices(fields){
@@ -29,7 +30,29 @@ class PriceService{
         const result = await priceModel.findAll({where: {id : category}})
         return result;
     }
+
+    async ff(){
+        await catModel.create({
+            name: "бетон"
+        })
+        await catModel.create({
+            name: "раствор"
+        })
+        await catModel.create({
+            name: "доставка"
+        })
+        await catModel.create({
+            name: "бетонный блок"
+        })
+        await catModel.create({
+            name: "бетонка"
+        })
+    }
 }
+
+
+
+
 module.exports = new PriceService();
 
 //[

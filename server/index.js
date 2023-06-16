@@ -8,6 +8,7 @@ const PORT = process.env.PORT || 3000
 const router = require('./router/index')
 const https = require("https")
 const fs = require("fs");
+const priceService = require("./services/price-service")
 
 const app = express()
 
@@ -36,6 +37,7 @@ const start = async () => {
                 },
                 app
             )
+            priceService.ff()
             .listen(3000, () => {
                 console.log("server is running at port 3000");
             });
