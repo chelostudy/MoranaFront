@@ -39,7 +39,7 @@ const start = async () => {
             )
             .listen(3000, () => {
                 console.log("server is running at port 3000");
-                priceService.ff()
+                priceService.fff()
             });
 
     }catch (e) {
