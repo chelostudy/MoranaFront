@@ -12,6 +12,7 @@ import MyList from "../components/MyList";
 import MyModal from "../components/UI/MyModal/MyModal";
 import RegisterForm from "../components/RegisterForm";
 import cl from "./admin.module.css"
+import {parseResponse} from "../utils/parseResponse";
 
 const Admin = observer(() => {
     //const {isAuth, setIsAuth} = useContext(AuthContext);
@@ -40,12 +41,7 @@ const Admin = observer(() => {
 
     async function getOrders() {
         try {
-            const response = await OrderService.getOrders(pgLimit, pgPage);
-
-            let result = [];
-            for(let i in response.data)
-                result.push([i, response.data[i]]);
-            setOrders(result);
+            setOrders(parseResponse(OrderService.getOrders(pgLimit, pgPage)));
         } catch (e) {
             console.log(e);
         }

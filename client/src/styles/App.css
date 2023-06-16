@@ -43,9 +43,12 @@ body {
     width: 100%;
     column-gap: 10px;
 }
-.place img{
-    max-height: 220px;
-    max-width: 220px;
+.place_img{
+    height: 220px;
+    width: 220px;
+}
+.place h2{
+    text-align: center;
 }
 
 .place div{
@@ -72,7 +75,8 @@ body {
     padding-bottom: 50px;
 }
 .main_blocks{
-
+    padding-top: 50px;
+    padding-bottom: 50px;
 }
 .first_block{
     background: url("../img/background_for_hello1.png") center center no-repeat;
@@ -85,7 +89,7 @@ body {
 }
 .second_block{
     padding-top: 50px;
-    height: 500px;
+    padding-bottom: 50px;
     background: #ccd9eb;
 }
 .third_block{
@@ -95,15 +99,20 @@ body {
 
 }
 .fifth_block{
-    height: 500px;
+
+    padding-top: 50px;
+    background: #eeeeee;
+    padding-bottom: 50px;
 }
 .sixth_block{
     height: 600px;
+    padding-top: 0;
+    padding-bottom: 0;
 }
 .map{
     width: 100%;
     height: 100%;
-    margin-top: 50px;
+
 }
 
 
@@ -172,9 +181,9 @@ body {
     .content{
         padding-bottom: 180px;
     }
-    .place img{
-        max-height: 120px;
-        max-width: 120px;
+    .place_img{
+        height: 120px;
+        width: 120px;
     }
     .place div{
         max-width: 120px;
