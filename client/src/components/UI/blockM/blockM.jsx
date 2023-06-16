@@ -18,13 +18,12 @@ const BlockM = (catId) => {
         }, []);
         // ...
 
-
-
     const [prices, setPrices]=useState([])
-
+    console.log(catId.catId,"ebis")
     async function getPrices(id) {
         try {
-            const response = await PriceService.getPricesByCat(id);
+            const response = await PriceService.getPricesByCat(catId.catId);
+
             let result = [];
             for(let i in response.data)
                 result.push([i, response.data[i]]);

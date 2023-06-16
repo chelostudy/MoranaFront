@@ -192,7 +192,7 @@ body {
     }
 }
 .test{
-
+    max-width: 320px;
 }
 .test div{
     margin-top: 50px;

@@ -12,6 +12,8 @@ import MyList from "../components/MyList";
 import MyModal from "../components/UI/MyModal/MyModal";
 import RegisterForm from "../components/RegisterForm";
 import cl from "./admin.module.css"
+import PriceService from "../services/PriceService";
+import PriceList from "../components/UI/PriceList/PriceList";
 
 const Admin = observer(() => {
     //const {isAuth, setIsAuth} = useContext(AuthContext);
@@ -24,9 +26,13 @@ const Admin = observer(() => {
         //setIsAuth(true)
         //localStorage.setItem('auth', 'true')
     //}
+    useEffect(() => {
+        getPrices()
+    }, [prices,store]);
 
     const {store} = useContext(Context);
     const [orders, setOrders] = useState([]);
+    const [prices, setPrices]=useState([])
     const [pgLimit, setPgLimit] = useState([15]);
     const [pgPage, setPgPage] = useState([0]);
     const [modalVisible, setModalVisible] = useState(false)
@@ -49,6 +55,29 @@ const Admin = observer(() => {
             console.log(e);
         }
     }
+    async function getPrices(){
+        try {
+            const response = await PriceService.getPrices();
+
+            setPrices(response.data);
+        } catch (e) {
+            console.log(e);
+        }
+    }
+    async function updatePrices(fields) {
+        try{
+            console.log("dsa",fields)
+            const response = await PriceService.updatePrices(fields)
+            let result = [];
+            for(let i in response.data)
+                result.push([i, response.data[i]]);
+            setOrders(result);
+        } catch (e){
+            console.log(e)
+        }
+    }
+
+
     async function deleteOrder(order_id) {
         try{
             const response = await OrderService.deleteOrder(order_id, pgLimit, pgPage)
@@ -100,11 +129,17 @@ const Admin = observer(() => {
                     <div></div>
                     <div><h2 style={{marginTop: "auto", marginBottom:"auto"}}>Список заказов:</h2></div>
                     <div><button style={{background : "9A0202",}} onClick={() => getOrders()}>Обновить список заказов</button></div>
+                    <div><button style={{background : "9A0202",}} onClick={() => getPrices()}>получить список цен</button></div>
                 </div>
                 <MyList remove={deleteOrder} update={updateOrder} records={orders}/>
+                {
+                    !prices==={} ? <PriceList update={updatePrices} records={prices}/> : console.log(prices)
+                }
             </div>
         );
     }
 });
 
 export default Admin;
+
+//
