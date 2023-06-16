@@ -105,14 +105,16 @@ body {
     padding-bottom: 50px;
 }
 .sixth_block{
+    display: flex;
     height: 600px;
     padding-top: 0;
     padding-bottom: 0;
 }
 .map{
-    width: 100%;
     height: 100%;
-
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 
@@ -188,4 +190,14 @@ body {
     .place div{
         max-width: 120px;
     }
+}
+.test{
+
+}
+.test div{
+    margin-top: 50px;
+}
+.test img{
+    height: 220px;
+    width: 300px;
 }

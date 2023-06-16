@@ -51,7 +51,7 @@ const OrderForm = (props) => {
                 name="text"
             /></div>
 
-            <div className={cl.oBtnDiv}><label htmlFor="pvc"><b>Я соглашаюсь с <Link to={"privacy"}>Политикой конфиденциальности</Link></b></label>
+            <div className={cl.oBtnDiv}><label htmlFor="pvc"><b>Я соглашаюсь с <Link to={"../privacy"}>Политикой конфиденциальности</Link></b></label>
             <input type={"checkbox"} checked={checked} onChange={changeCheckbox} name={"pvc"}/>
             </div>
             <button onClick={async () => {

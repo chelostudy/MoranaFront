@@ -1,21 +1,20 @@
 import React, {useEffect, useState} from 'react';
 import PriceService from "../../../services/PriceService";
-import {parseResponse} from "../../../utils/parseResponse";
 import OrderService from "../../../services/OrderService";
 import {CSSTransition, TransitionGroup} from "react-transition-group";
-import PostItem from "../../PostItem";
+
 import price from "../../../pages/price";
 import TableForPrice from "./tableForPrice";
 import MyList from "../../MyList";
 
 
 
-const BlockM = () => {
+const BlockM = (catId) => {
 
 
 
         useEffect(() => {
-            getPrices(1)
+            getPrices(catId)
         }, []);
         // ...
 
@@ -34,8 +33,6 @@ const BlockM = () => {
             console.log(e);
         }
     }
-
-
 
     return (
         <div>
@@ -57,7 +54,7 @@ const BlockM = () => {
                                 <tbody>
                                 <tr className="table__row">
                                     <td>{record[1].name}</td>
-                                    <td>{record[1].email}</td>
+                                    <td>{record[1].cost}</td>
                                 </tr>
                                 </tbody>
                             </CSSTransition>

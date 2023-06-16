@@ -59,7 +59,6 @@ const About = () => {
 
             <div className="main_blocks sixth_block">
                 <YMaps>
-                    <h2>Как к нам добраться?</h2>
                         <Map className="map" defaultState={{  center: [47.283942, 39.684083], zoom: 15 }}>
                         <Placemark geometry={[47.283942, 39.684083]} />
                         </Map>
